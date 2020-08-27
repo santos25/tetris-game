@@ -11,13 +11,9 @@ export const useGameStatus = (rowsCleared) => {
     const calculateScore = useCallback(() => {
         // console.log({rowsCleared});
         if (rowsCleared > 0) {
-            console.log({ score })
-            console.log({ rowsCleared })
-            console.log(linePoints[rowsCleared - 1]);
-            console.log(level);
-
-            setScore(prev => prev + linePoints[rowsCleared - 1] * (level + 1))
-            setRows(prev => prev + rowsCleared)
+            // console.log({ score })
+            setScore(prev => prev + linePoints[(rowsCleared / 2) - 1] * (level + 1))
+            setRows(prev => prev + (rowsCleared / 2) )
         }
     }, [rowsCleared, linePoints, level])
 

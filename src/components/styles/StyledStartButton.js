@@ -11,4 +11,10 @@ background-color:  #0E0000;
 -webkit-box-shadow: 2px 2px px 4px rgba(227,11,11,1);
 -moz-box-shadow: 2px 2px 4px 4px rgba(227,11,11,1);
 box-shadow: 2px 3px 4px 2px rgba(227,11,11,1);
+
+@media screen and (max-width: 700px) {
+    text-align: center;
+    width : 50%;
+    font-size: 25px;
+}
 `

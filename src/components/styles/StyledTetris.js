@@ -13,7 +13,7 @@ export const StyleTittle = styled.div`
     margin : 0 auto;
 
     @media screen and (max-width: 700px) {
-        margin : 30px 0 0 0;
+        margin : 10px 0 0 0;
 
     }
 `
@@ -38,7 +38,7 @@ export const StyledTetris = styled.div`
         display : flex;
         flex-direction: column;
         width: 100%;
-        max-width: 75%;
+        max-width: 80%;
         padding: 20px 15px ;
         justify-content: center;
         border-radius : 10px;

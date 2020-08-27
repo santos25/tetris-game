@@ -14,6 +14,7 @@ box-shadow: 2px 3px 4px 2px rgba(227,11,11,1);
 
 @media screen and (max-width: 700px) {
     text-align: center;
-    
+    width : 100%;
+    font-size:20px;
 }
 `

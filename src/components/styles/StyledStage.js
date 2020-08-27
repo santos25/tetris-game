@@ -19,7 +19,8 @@ export const StyledStage = styled.div`
     @media screen and (max-width: 700px) {
       grid-template-rows: repeat(
         ${props => props.height},
-        calc(50vw / ${props => props.width})
+        calc(70vw / ${props => props.width})
       );
+      max-width: 52vw;
   }
 `

@@ -13,7 +13,7 @@ export const StyledDisplay = styled.div`
 
     
     @media screen and (max-width: 700px) {
-        font-size: 10px;
+        font-size: 11px;
         padding: 3px;
         border-radius: 10px;
         margin-bottom: 20px;

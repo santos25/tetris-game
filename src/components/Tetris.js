@@ -13,7 +13,7 @@ import StartButton from './StartButton'
 import ActionButton from './ActionButton'
 
 //helpers
-import { createStage, checkCollision } from '../gamehelper';
+import { createStage, checkCollision , checkCollisionDown} from '../gamehelper';
 
 //custom hooks
 import { usePlayer } from '../hooks/usePlayer'
@@ -57,7 +57,7 @@ const Tetris = () => {
         setStage(createStage());
         resetPlayer()
         setGameOver(false);
-        setDropTime(700)
+        setDropTime(400)
         setLevel(0)
         setRows(0)
         setScore(0);
@@ -77,14 +77,12 @@ const Tetris = () => {
     const moveUp = ({ keyCode }) => {
         if (!gameOver) {
             if (keyCode === 40) {
-                setDropTime(1000 / (level + 1) + 200)
+                setDropTime(400 / (level + 1) + 200)
             }
         }
     }
 
-    // console.log('pos ', player.pos.x);
     const move = ({ keyCode }) => {
-        console.log(keyCode);
 
         if (!gameOver) {
             if (keyCode === 37) {
@@ -103,10 +101,9 @@ const Tetris = () => {
 
         if (rows > (level + 1) * 10) {
             setLevel(prev => prev + 1);
-            setDropTime(1000 / (level + 1) + 200);
+            setDropTime(400 / (level + 1) + 200);
         }
 
-        // console.log(checkCollision(player, stage, { x: 0, y: 1 }));
         if (!checkCollision(player, stage, { x: 0, y: 1 })) {
             updatePlayerPos({ x: 0, y: 1, collided: false })
         } else {
@@ -120,6 +117,22 @@ const Tetris = () => {
             updatePlayerPos({ x: 0, y: 0, collided: true })
         }
     }
+
+    const dropFullDown = () => {
+
+        if (rows > (level + 1) * 10) {
+            setLevel(prev => prev + 1);
+            setDropTime(1000 / (level + 1) + 200);
+        }
+        
+       const positionDown =  checkCollisionDown(player, stage);
+    //    console.log('Current pos ' ,  player.pos.y);
+    //    console.log('next pos ' , positionDown);
+    //    console.log( (positionDown - player.pos.y));
+        updatePlayerPos({ x: 0, y: (positionDown - player.pos.y), collided: true })
+        
+    }
+
 
     const dropPlayer = () => {
         // setDropTime(null)
@@ -142,32 +155,24 @@ const Tetris = () => {
         }
     }
 
-    const moveDown = () => {
-        dropPlayer()
-    }
+    // const moveDown = () => {
+    //     dropPlayer()
+    // }
 
     const moveUpClick = () => {
         playerRotate(stage, 1)
     }
 
     const playSound = (src) => {
-        console.log(src);
 
         Howler.stop();
         soundStartGame.play();
 
-        // if (idPlayTetris === null) {
-        //     console.log("no sound");
-        //     setIdPlayTetris(sound.play());
-        // } else {
-        //     console.log("sound ", idPlayTetris);
-        //     Howler.stop(idPlayTetris);
-        //     setIdPlayTetris(sound.play());
-        // }
+
     }
 
     return (
-        <WrappedTetris rol="button" tabIndex="0" onKeyUp={(e) => moveUp(e)} onKeyDown={(e) => move(e)}>
+        <WrappedTetris rol="button" tabIndex="0" onKeyDown={(e) => move(e)}>
             <StyleTittle>
                 <h1>TETRIS </h1>
             </StyleTittle>
@@ -203,7 +208,7 @@ const Tetris = () => {
                             </ActionButton>
                         </StyledLeftRight>
                         <StyledDown>
-                            <ActionButton move={moveDown}>
+                            <ActionButton move={dropFullDown}>
                                 <i className="fas fa-arrow-down"></i>
                             </ActionButton>
                             <ActionButton move={moveUpClick}>
