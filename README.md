@@ -11,3 +11,8 @@ Technologies:
   * UseEffect.
   * UseCallback.
   * React.Memo.
+
+New Features:
+   * Music throughout the game.
+   * Drop fast.
+   * Responsive Design.
